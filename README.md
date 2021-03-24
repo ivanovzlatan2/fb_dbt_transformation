@@ -20,3 +20,6 @@ fb_tap:
       location: US
       priority: interactive
 ```
+
+### Results
+При `dbt run` създава таблицата: `fb-abi-tool.dev_transform.transform_insights`
