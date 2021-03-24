@@ -3,7 +3,7 @@ Welcome to your new dbt project!
 ### How to test
 
 1. В папката за проекта трябва да се сложи : fb-api-bq-client-secrets.json
-2. В C:\Users\USER\.dbt\profiles.yml трябва да се добави:
+2. В C:\Users\USER\\.dbt\profiles.yml трябва да се добави:
 
 ```
 fb_tap:
