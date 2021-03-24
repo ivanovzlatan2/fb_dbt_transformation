@@ -1,5 +1,3 @@
-Welcome to your new dbt project!
-
 ### How to test
 
 1. В папката за проекта трябва да се сложи : fb-api-bq-client-secrets.json
