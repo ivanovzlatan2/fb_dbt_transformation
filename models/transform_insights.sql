@@ -2,7 +2,7 @@
 
 
 with insights as (
-   select * from test_dataset.ads_insights
+   select * from development_test.fb_test_3_ads_insights
 ),
 
 base as (
