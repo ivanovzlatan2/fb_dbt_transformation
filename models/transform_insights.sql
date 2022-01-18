@@ -58,7 +58,7 @@ order by base.date ASC),
 
 action_values as (
 with insights as (
-   select * from test_dataset.ads_insights
+   select * from development_test.fb_test_3_ads_insights
 ),
 
 action_values as (
