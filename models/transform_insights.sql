@@ -134,7 +134,7 @@ select * except(rn) from (
     row_number() over(partition by ad_id, date order by _airbyte_emitted_at desc) as rn
     from merge_ad_names
     ) t
-    where t.rn = 1
+    where t.rn = 1 AND spend != 0 OR purchase != 0 
 
 
 -- select * from basic_report
