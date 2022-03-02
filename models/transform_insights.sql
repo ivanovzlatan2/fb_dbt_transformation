@@ -2,7 +2,7 @@
 
 
 with insights as (
-  select * from  development_test.ads_insights
+  select * from  devteam.ads_insights
 ),
 
 
@@ -19,7 +19,7 @@ actions as (
      any_value(if(action_type = "landing_page_view", value, null)) as landing_page_view,
      any_value(if(action_type = "comment", value, null)) as comment,
      any_value(if(action_type = "complete_registration", value, null)) as complete_registration,
-  from development_test.ads_insights_actions
+  from devteam.ads_insights_actions
   group by actions_id
 ),
 
@@ -33,7 +33,7 @@ action_values as (
      any_value(if(action_type = "offsite_conversion.fb_pixel_add_to_cart", value, null)) as add_to_cart_value,
      any_value(if(action_type = "offsite_conversion.fb_pixel_initiate_checkout", value, null)) as initiate_checkout_value,
      any_value(if(action_type = "offsite_conversion.fb_pixel_purchase", value, null)) as purchase_value,
-  from development_test.ads_insights_action_values
+  from devteam.ads_insights_action_values
   group by action_values_id
 ),
 
