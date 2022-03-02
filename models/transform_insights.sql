@@ -2,7 +2,7 @@
 
 
 with insights as (
-  select * from  development_test.fb_test_3_ads_insights
+  select * from  development_test.ads_insights
 ),
 
 
@@ -11,7 +11,7 @@ with insights as (
 
 actions as (
   select 
-     _airbyte_fb_test_3_ads_insights_hashid as actions_id,
+     _airbyte_ads_insights_hashid as actions_id,
      any_value(if(action_type = "offsite_conversion.fb_pixel_view_content", value, null)) as view_content,
      any_value(if(action_type = "offsite_conversion.fb_pixel_add_to_cart", value, null)) as add_to_cart,
      any_value(if(action_type = "offsite_conversion.fb_pixel_initiate_checkout", value, null)) as initiate_checkout,
@@ -19,7 +19,7 @@ actions as (
      any_value(if(action_type = "landing_page_view", value, null)) as landing_page_view,
      any_value(if(action_type = "comment", value, null)) as comment,
      any_value(if(action_type = "complete_registration", value, null)) as complete_registration,
-  from development_test.fb_test_3_ads_insights_actions
+  from development_test.ads_insights_actions
   group by actions_id
 ),
 
@@ -28,12 +28,12 @@ actions as (
 
 action_values as (
   select 
-     _airbyte_fb_test_3_ads_insights_hashid as action_values_id,
+     _airbyte_ads_insights_hashid as action_values_id,
      any_value(if(action_type = "offsite_conversion.fb_pixel_view_content", value, null)) as view_content_value,
      any_value(if(action_type = "offsite_conversion.fb_pixel_add_to_cart", value, null)) as add_to_cart_value,
      any_value(if(action_type = "offsite_conversion.fb_pixel_initiate_checkout", value, null)) as initiate_checkout_value,
      any_value(if(action_type = "offsite_conversion.fb_pixel_purchase", value, null)) as purchase_value,
-  from development_test.fb_test_3_ads_insights_action_values
+  from development_test.ads_insights_action_values
   group by action_values_id
 ),
 
@@ -45,9 +45,9 @@ basic_report as (
     date_start, ad_id, _airbyte_emitted_at, campaign_name,adset_name, ad_name,account_name,  adset_id, campaign_id, cpc, cpm, ctr, frequency, impressions, inline_link_clicks, reach,objective, spend, view_content, add_to_cart,add_to_cart_value,purchase,purchase_value,landing_page_view, comment, initiate_checkout, complete_registration, 
   from insights
   left join actions
-  ON insights._airbyte_fb_test_3_ads_insights_hashid=actions.actions_id
+  ON insights._airbyte_ads_insights_hashid=actions.actions_id
   left join  action_values
-  ON insights._airbyte_fb_test_3_ads_insights_hashid=action_values.action_values_id
+  ON insights._airbyte_ads_insights_hashid=action_values.action_values_id
 ),
 
 -- Campaign_name is extracted from FB API and is subject to change on a daily basis, because it serves advertisers an annotation purpose.
